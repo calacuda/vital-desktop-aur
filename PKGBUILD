@@ -1,10 +1,10 @@
 # Maintainer: Eoghan West <eowest@gmail.com>
-pkgname=vital-synth-desktop-file-git
+pkgname=vital-synth-desktop-file
 pkgver=0.0.1
 pkgrel=1
 epoch=
-pkgdesc="a deskotp file for the Vital eavetable synth software"
-arch=()
+pkgdesc="a deskotp file for the Vital wavetable synth software"
+arch=(x86 x86_64)
 url="https://github.com/calacuda/vital-desktop-aur"
 license=('MIT')
 groups=()
@@ -19,27 +19,19 @@ backup=()
 options=()
 install=
 changelog=
-source=("$pkgname-$pkgver.tar.gz"
-        "$pkgname-$pkgver.patch")
+source=("git+$url")
 noextract=()
-sha256sums=()
+sha256sums=("SKIP")
 validpgpkeys=()
 
-prepare() {
-	cd "$pkgname-$pkgver"
-	# patch -p1 -i "$srcdir/$pkgname-$pkgver.patch"
-}
-
-build() {
-	cd "$pkgname-$pkgver"
-	# ./configure --prefix=/usr
-	# make
-	git clone $url .
-}
-
 package() {
-	cd "$pkgname-$pkgver"
+	# cd "$pkgname-$pkgver"
+	cd "$srcdir/$_pkgname/vital-desktop-aur/"
 	# make DESTDIR="$pkgdir/" install
-	install ./vital-synth.desktop /usr/share/applications/vital-synth.desktop
-	install ./vital.png /usr/share/pixmaps/vital.png
+	ls -la "${pkgdir}"
+	
+	mkdir -p "${pkgdir}"/usr/share/{applications,pixmaps}/
+	
+	install ./vital-synth.desktop "${pkgdir}/usr/share/applications/vital-synth.desktop"
+	install ./vital.png "${pkgdir}/usr/share/pixmaps/vital.png"
 }
