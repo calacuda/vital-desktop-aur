@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Vital
+Exec=/usr/bin/Vital
+Terminal=false
+Type=Application
+Icon=vital
+StartupWMClass=Vital
+Comment=Vital Synth
+# MimeType=x-scheme-handler/obsidian;
+Categories=Music;
